@@ -1,0 +1,34 @@
+# Resume/Job Matching System Configuration
+
+# Model Settings
+models:
+  embedding_model: "all-MiniLM-L6-v2"  # Sentence-Transformer model
+  spacy_model: "en_core_web_sm"        # spaCy NER model
+
+# Matching Weights (must sum to 1.0)
+matching:
+  semantic_weight: 0.40      # BERT embedding similarity
+  skill_weight: 0.35         # Skill overlap score
+  keyword_weight: 0.25       # TF-IDF keyword match
+
+# Scoring Thresholds
+thresholds:
+  excellent_match: 85
+  good_match: 70
+  fair_match: 55
+  poor_match: 40
+
+# File Processing
+file_processing:
+  max_file_size_mb: 10
+  supported_formats:
+    - ".pdf"
+    - ".docx"
+    - ".doc"
+    - ".txt"
+
+# UI Settings
+ui:
+  theme: "dark"
+  page_title: "AI Resume Matcher"
+  page_icon: "🎯"

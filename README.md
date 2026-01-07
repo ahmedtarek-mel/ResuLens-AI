@@ -11,7 +11,7 @@
 
 **Transform your job search with AI-powered resume analysis that goes beyond simple keyword matching.**
 
-[Live Demo](https://resulens-ai.onrender.com) • [Features](#-features) • [Installation](#-quick-start) • [Tech Stack](#-tech-stack) • [Author](#-author)
+[Live Demo](https://resulens-ai.onrender.com) 
 
 </div>
 
@@ -157,26 +157,6 @@ ResuLens-AI/
 ```bash
 pytest tests/ -v
 ```
-
----
-
-## 🌐 Deployment
-
-The app is production-ready for **Render**.
-
-
-### Environment Variables:
-
-| Variable | Value | Description |
-|----------|-------|-------------|
-| `LIGHTWEIGHT_MODE` | `true` | Enables memory-efficient mode (no BERT, uses TF-IDF) |
-| `SECRET_KEY` | `your-secret-key` | Flask session encryption |
-
-> **Note:** Free tier has 512MB RAM limit. `LIGHTWEIGHT_MODE=true` reduces memory usage from ~800MB to ~150MB.
-
----
-
-
 ## 🗺️ Roadmap
 
 - [ ] LinkedIn profile import
@@ -207,7 +187,7 @@ The app is production-ready for **Render**.
 
 ## 📄 License
 
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License 
 
 ---
 

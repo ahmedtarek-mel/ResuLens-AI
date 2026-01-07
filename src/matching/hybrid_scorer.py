@@ -112,12 +112,24 @@ class HybridScorer:
             self.skill_weight /= total
             self.keyword_weight /= total
         
+        # Check for lightweight mode (for low-memory deployments like Render free tier)
+        import os
+        self.lightweight_mode = os.environ.get('LIGHTWEIGHT_MODE', 'false').lower() == 'true'
+        
         # Initialize matchers
         model = model_name or config.embedding_model
-        self.semantic_matcher = SemanticMatcher(model_name=model)
+        
+        if self.lightweight_mode:
+            # Skip BERT to save memory - use TF-IDF for semantic similarity
+            print("⚡ LIGHTWEIGHT MODE: Skipping BERT model to save memory")
+            self.semantic_matcher = None
+        else:
+            self.semantic_matcher = SemanticMatcher(model_name=model)
+            
         self.tfidf_matcher = TFIDFMatcher()
         self.skill_extractor = SkillExtractor()
         self.preprocessor = TextPreprocessor()
+
     
     def calculate_match(
         self, 
@@ -143,9 +155,16 @@ class HybridScorer:
         job_clean = self.preprocessor.preprocess(job_text, for_embedding=True)
         
         # 1. Calculate semantic similarity
-        semantic_score = self.semantic_matcher.calculate_similarity(
-            resume_clean, job_clean, preprocess=False
-        )
+        if self.lightweight_mode or self.semantic_matcher is None:
+            # Use TF-IDF as fallback for semantic similarity in lightweight mode
+            semantic_score = self.tfidf_matcher.calculate_similarity(
+                resume_clean, job_clean
+            )
+        else:
+            semantic_score = self.semantic_matcher.calculate_similarity(
+                resume_clean, job_clean, preprocess=False
+            )
+
         
         # 2. Calculate skill match
         if resume_skills is None:

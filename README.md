@@ -26,7 +26,7 @@
 
 ---
 
-## ✨ Features
+##  Features
 
 ###  Multi-Dimensional Analysis
 - **Semantic Matching** — BERT-powered understanding of context and meaning
@@ -162,9 +162,20 @@ pytest tests/ -v
 
 ## 🌐 Deployment
 
-The app is production-ready and can be deployed to:
+The app is production-ready for **Render**.
 
-- **Render** 
+
+### Environment Variables:
+
+| Variable | Value | Description |
+|----------|-------|-------------|
+| `LIGHTWEIGHT_MODE` | `true` | Enables memory-efficient mode (no BERT, uses TF-IDF) |
+| `SECRET_KEY` | `your-secret-key` | Flask session encryption |
+
+> **Note:** Free tier has 512MB RAM limit. `LIGHTWEIGHT_MODE=true` reduces memory usage from ~800MB to ~150MB.
+
+---
+
 
 ## 🗺️ Roadmap
 

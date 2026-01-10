@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="assets/resulens_ai.png" alt="ResuLens AI Project Banner" width="100%" style="border-radius: 10px;"/>
+
 #  ResuLens AI
 
 ### Intelligent Resume-to-Job Matching Powered by NLP & Machine Learning
@@ -17,7 +19,7 @@
 
 ---
 
-## 🎬 Demo
+## 🎬 Demoo
 
 <div align="center">
   <img src="assets/demo_video.webp" alt="ResuLens AI Demo" width="100%"/>

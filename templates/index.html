@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="header">
+    <h1>ResuLens AI</h1>
+    <p>Optimize your resume for any job description using advanced NLP & AI.</p>
+</div>
+
+<div class="content-wrapper">
+    <div class="input-section">
+        <div class="options-bar">
+            <label class="toggle-switch">
+                <input type="checkbox" id="demo-toggle">
+                <span class="slider"></span>
+                <span class="label-text">Try with demo data</span>
+            </label>
+        </div>
+
+        <form id="analysis-form">
+            <div class="columns">
+                <!-- Column 1: Upload -->
+                <div class="column">
+                    <div class="card input-card">
+                        <div class="card-header">
+                            <h3>1. Upload Resume</h3>
+                            <span class="subtext">PDF, DOCX, DOC, or TXT</span>
+                        </div>
+                        <div class="file-drop-area" id="drop-area">
+                            <span class="file-msg">Drag & Drop or Click to Upload</span>
+                            <input class="file-input" type="file" name="resume_file" accept=".pdf,.docx,.doc,.txt">
+                        </div>
+                        <div id="file-name-display" class="file-info hidden"></div>
+                    </div>
+                </div>
+
+                <!-- Column 2: Job Description -->
+                <div class="column">
+                    <div class="card input-card">
+                        <div class="card-header">
+                            <h3>2. Job Description</h3>
+                            <span class="subtext">Paste requirements</span>
+                        </div>
+                        <textarea name="job_description" id="job-description"
+                            placeholder="Paste the complete job description here..." minlength="50"></textarea>
+                        <div class="word-count" id="word-count">0 words</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-area">
+                <button type="submit" class="analyze-btn" id="analyze-btn">Run Analysis</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Spinner -->
+    <div id="loading-spinner" class="spinner-overlay hidden">
+        <div class="spinner"></div>
+        <p>Analyzing match...</p>
+    </div>
+
+    <!-- Results Container (Populated via JS) -->
+    <div id="results-container" class="hidden">
+        <hr class="divider">
+
+        <div class="dashboard-header">
+            <h3>📊 Analysis Dashboard</h3>
+        </div>
+
+        <div class="charts-row">
+            <!-- Gauge -->
+            <div class="chart-card">
+                <div class="chart-title">Overall Match</div>
+                <div id="gauge-chart" class="chart-container"></div>
+                <div id="grade-badge" class="grade-badge">
+                    <div class="grade-circle" id="grade-circle">A</div>
+                    <span id="grade-text">Excellent</span>
+                </div>
+            </div>
+
+            <!-- Radar -->
+            <div class="chart-card">
+                <div class="chart-title">Match Composition</div>
+                <div id="radar-chart" class="chart-container"></div>
+            </div>
+        </div>
+
+        <div class="breakdown-section">
+            <h4>Score Breakdown</h4>
+            <div id="bar-chart" class="chart-container-small"></div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="skills-section">
+            <h4>Skills Analysis</h4>
+            <div class="skills-grid">
+                <div class="skill-card matched">
+                    <div class="skill-header">
+                        <span>Matched</span>
+                        <span class="badge green" id="count-matched">0</span>
+                    </div>
+                    <div class="skill-list" id="list-matched"></div>
+                </div>
+                <div class="skill-card missing">
+                    <div class="skill-header">
+                        <span>Missing</span>
+                        <span class="badge red" id="count-missing">0</span>
+                    </div>
+                    <div class="skill-list" id="list-missing"></div>
+                </div>
+                <div class="skill-card extra">
+                    <div class="skill-header">
+                        <span>Extra</span>
+                        <span class="badge blue" id="count-extra">0</span>
+                    </div>
+                    <div class="skill-list" id="list-extra"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="keywords-section" id="keywords-section">
+            <hr class="divider">
+            <h5>🔑 Top Keywords Found</h5>
+            <div class="keywords-cloud" id="keywords-cloud"></div>
+        </div>
+
+        <div class="recommendations-section">
+            <hr class="divider">
+            <h3>Action Plan</h3>
+            <div id="recommendations-list"></div>
+        </div>
+
+        <div class="report-section">
+            <a href="/report" class="download-btn">
+                📄 Download Detailed PDF Report
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

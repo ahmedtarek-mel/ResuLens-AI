@@ -1,0 +1,27 @@
+# Environment
+venv/
+env/
+.env
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Streamlit
+.streamlit/
+!app/.streamlit/config.toml # Keep app config if it exists, but usually we ignore secrets
+secrets.toml
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Brain/Memory (Agent artifacts)
+.gemini/
